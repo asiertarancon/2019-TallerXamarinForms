@@ -1,0 +1,48 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamaEvents.Views.NewEventPage"
+             Title="New Event">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Label" x:Key="TitleLabel">
+                <Setter Property="FontSize" Value="Medium"/>
+                <Setter Property="FontAttributes" Value="Bold"/>
+            </Style>
+
+        </ResourceDictionary>    
+    </ContentPage.Resources>
+    
+    <ContentPage.ToolbarItems>
+        <ToolbarItem x:Name="CancelButton" Text="Cancel" Clicked="CancelButton_Clicked"/>
+        <ToolbarItem x:Name="SaveButton" Text="Save" Clicked="SaveButton_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout Orientation="Vertical" Padding="5">
+            
+            <Entry Text="{Binding Event.Title, Mode=TwoWay}"
+                   Placeholder="Write Event Title..." Margin="0,5"/>
+            <Label Text="Description" Style="{StaticResource TitleLabel}"/>
+            <Entry Text="{Binding Event.Description, Mode=TwoWay}"/>
+            <Label Text="Organizer" Style="{StaticResource TitleLabel}"/>
+            <Entry Text="{Binding Event.Organizer, Mode=TwoWay}"/>
+            <Label Text="Location" Style="{StaticResource TitleLabel}"/>
+            <Entry Text="{Binding Event.Location, Mode=TwoWay}"/>
+            <Label Text="Date Start" Style="{StaticResource TitleLabel}"/>
+            <StackLayout Orientation="Horizontal">
+                <DatePicker Date="{Binding Event.DateStart}"/>
+                <TimePicker Time="{Binding Event.DateStart}"/>
+            </StackLayout>
+            
+            <Label Text="Date End" Style="{StaticResource TitleLabel}"/>
+            <StackLayout Orientation="Horizontal">
+                <DatePicker Date="{Binding Event.DateEnd}"/>
+                <TimePicker Time="{Binding Event.DateEnd}"/>
+            </StackLayout>
+            
+            <Label Text="Image URL" Style="{StaticResource TitleLabel}"/>
+            <Entry Text="{Binding Event.Image}"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

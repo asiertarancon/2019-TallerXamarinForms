@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Shell xmlns="http://xamarin.com/schemas/2014/forms"
+       xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+       xmlns:local="clr-namespace:XamaEvents"
+       xmlns:views="clr-namespace:XamaEvents.Views"
+       FlyoutHeaderBehavior="CollapseOnScroll"
+       RouteScheme="app"
+       RouteHost="riojadotnet.com"
+       Route="xamaevents"
+       x:Name="self"
+       x:Class="XamaEvents.TheShell">
+    
+    <Shell.FlyoutHeader>        
+        <Image Source="uR.png" BackgroundColor="#904357"/>        
+    </Shell.FlyoutHeader>
+    
+    <ShellItem FlyoutIcon="home.png" Title="Home" Route="events">
+        <ShellSection Icon="nextEvents.png" Title="Next events" Route="next">
+            <ShellContent Title="Next events">
+                <views:EventsListPage/>
+            </ShellContent>
+        </ShellSection>
+        <ShellSection Icon="pastevents.png" Title="Past events" Route="past">
+            <ShellContent Title="Past events">
+                <views:EventsPastPage/>
+            </ShellContent>
+        </ShellSection>
+    </ShellItem>
+
+    <ShellItem Route="tab">
+        <ShellSection Route="test">
+            <ShellContent Route="settings" Title="Settings" ContentTemplate="{DataTemplate views:SettingsPage}"/>
+            <ShellContent Route="about" Title="About" ContentTemplate="{DataTemplate views:AboutPage}"/>
+        </ShellSection>
+    </ShellItem>
+    
+    <Shell.MenuItems>
+        <MenuItem Icon="settings.png" Text="Settings"
+                  BindingContext="{x:Reference self}"                  
+                  Command="{Binding GoToSettingsCommand}"/>
+        <MenuItem Icon="info.png" Text="About us"
+                  BindingContext="{x:Reference self}"                  
+                  Command="{Binding GoToAboutUsCommand}"/>
+        <MenuItem Icon="info.png" Text="Privacy policy"
+                  BindingContext="{x:Reference self}"                  
+                  Command="{Binding GoToPrivacyPolicyCommand}"/>
+                  
+    </Shell.MenuItems>    
+
+</Shell>

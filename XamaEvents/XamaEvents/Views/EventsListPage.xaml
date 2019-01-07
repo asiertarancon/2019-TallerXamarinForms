@@ -1,0 +1,64 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="XamaEvents.Views.EventsListPage">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <DataTemplate x:Key="GridTemplate">
+                <Grid HeightRequest="150" WidthRequest="150" Padding="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+
+                    <Image Grid.Row="0"
+                           Source="{Binding Image}"
+                           Aspect="AspectFit"/>
+                    <Label Grid.Row="1"
+                           Text="{Binding Title}"
+                           FontSize="Small"/>
+                </Grid>
+            </DataTemplate>
+
+            <DataTemplate x:Key="ListTemplate">
+                <Grid HeightRequest="150" WidthRequest="150" Padding="10">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+
+                    <Image Grid.Column="0"
+                           Source="{Binding Image}"
+                           Aspect="AspectFit"/>
+                    <Label Grid.Column="1"
+                           Text="{Binding Title}"
+                           FontSize="Small"/>
+                </Grid>
+            </DataTemplate>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Icon="addEvent.png" Text="Add" x:Name="AddButton" Clicked="GridButton_Clicked"/>
+    </ContentPage.ToolbarItems>
+
+    <CollectionView x:Name="Collection" 
+                    ItemsSource="{Binding Events}"
+                    ItemTemplate="{StaticResource GridTemplate}"
+                    >
+
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="2"/>
+        </CollectionView.ItemsLayout>
+
+        <CollectionView.EmptyView>
+            <Label Text="No hay eventos :("
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"/>
+        </CollectionView.EmptyView>
+        
+       
+    </CollectionView>
+
+</ContentPage>
